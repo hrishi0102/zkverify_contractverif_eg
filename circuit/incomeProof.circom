@@ -2,6 +2,7 @@ pragma circom 2.0.0;
 
 template IncomeProof() {
     // Inputs
+    signal input address;
     signal input income; // Private input (user's income)
     signal input threshold; // Public input (threshold, e.g., 50000)
 
@@ -23,4 +24,4 @@ template IncomeProof() {
     aux === diff * isAboveThreshold; // Ensure aux is computed correctly
 }
 
-component main = IncomeProof();
+component main {public [address]} = IncomeProof();

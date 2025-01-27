@@ -69,7 +69,7 @@ app.post("/generate-and-verify-proof", async (req, res) => {
 
     // Generate proof using snarkjs
     const { proof, publicSignals } = await groth16.fullProve(
-      { income, threshold },
+      { address: evmAccount, income, threshold },
       "../output/incomeProof_js/incomeProof.wasm",
       zkeyPath
     );

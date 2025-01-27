@@ -34,3 +34,37 @@ snarkjs groth16 setup incomeProof.r1cs pot12_final.ptau incomeProof_0000.zkey
 snarkjs zkey contribute incomeProof_0000.zkey incomeProof_0001.zkey
 snarkjs zkey export verificationkey incomeProof_0001.zkey verification_key.json
 ```
+
+## Deploy contract
+
+```bash
+npx hardhat clean
+npx hardhat compile
+npx hardhat run scripts/deploy.js --network sepolia
+```
+
+## Add all .env files in backend, frontend, contracts folders.
+
+## 6 . In backend folder generate vk hash
+
+```bash
+cd backend
+node register_vk.js
+```
+
+## 7. Add VK_HASH to .env in contracts folder
+
+## 8 . Run backend
+
+```bash
+cd backend
+node index.js
+```
+
+## 9 . Run frontend
+
+```bash
+cd frontend
+cd vite-project
+npm run dev
+```

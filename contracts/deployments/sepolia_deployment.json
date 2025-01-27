@@ -1,0 +1,8 @@
+{
+  "network": "sepolia",
+  "contractAddress": "0x7fA59bF981fDaE641bd901C76387aC5FBfFf4f0D",
+  "zkVerifyContract": "0x209f82A06172a8d96CF2c95aD8c42316E80695c1",
+  "vkHash": "0x6f5c4287b2ae7af04697fef5caea5df9f4b4e13b2656f69627121de45f490464",
+  "deploymentTime": "2025-01-27T08:56:12.872Z",
+  "deployer": "0x6A475ED41c9A172332DBa2308e5D6D059F650E12"
+}

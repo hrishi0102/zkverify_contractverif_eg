@@ -187,14 +187,21 @@ app.post("/generate-and-verify-proof", async (req, res) => {
     );
     console.log("Filtering for attestationId:", attestationId);
 
+    console.log("Transaction details:", {
+      attestationId: attestationId,
+      merkleProof: verificationStatus.details.merkleProof.proof,
+      numberOfLeaves: verificationStatus.details.merkleProof.numberOfLeaves,
+      leafIndex: verificationStatus.details.merkleProof.leafIndex,
+    });
+
     zkvContract.once(filterAttestationsById, async (_id, _root) => {
       // After the attestation has been posted on the EVM, send a `verifyIncomeProof` tx
       // to the app contract, with all the necessary merkle proof details
       const txResponse = await appContract.verifyIncomeProof(
-        attestationId,
-        merkleProof,
-        numberOfLeaves,
-        leafIndex
+        attestationId, // Convert to BigInt
+        verificationStatus.details.merkleProof.proof, // Pass the proof array directly
+        verificationStatus.details.merkleProof.numberOfLeaves, // Convert to BigInt
+        verificationStatus.details.merkleProof.proofleafIndex
       );
       const { hash } = await txResponse;
       console.log(`Tx sent to EVM, tx-hash ${hash}`);

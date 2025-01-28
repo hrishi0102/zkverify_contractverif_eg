@@ -26,14 +26,14 @@ const VerificationDetails = ({ result }) => (
           : "bg-red-50 border border-red-200"
       }`}
     >
-      <h3 className="text-lg font-medium mb-2 text-center">
+      <h3 className="text-lg font-medium mb-4 text-center">
         Verification Result:{" "}
         <span className={result.isValid ? "text-green-600" : "text-red-600"}>
           {result.isValid ? "Valid" : "Invalid"}
         </span>
       </h3>
 
-      {result.isValid && (
+      {result.isValid && result.details && (
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <DetailBox
@@ -46,20 +46,22 @@ const VerificationDetails = ({ result }) => (
             />
           </div>
 
-          <HashDisplay label="Transaction Hash" value={result.details.txHash} />
-
-          <HashDisplay label="Block Hash" value={result.details.blockHash} />
-
           <HashDisplay label="Leaf Digest" value={result.details.leafDigest} />
 
           {result.contractVerification && (
             <div className="mt-4 p-4 bg-blue-50 rounded-lg">
-              <h4 className="text-blue-800 font-medium">
+              <h4 className="text-blue-800 font-medium mb-2">
                 Smart Contract Verification
               </h4>
-              <p className="text-blue-600">
-                Transaction Hash: {result.contractVerification.txHash}
+              <p className="text-blue-600 break-all">
+                Status:{" "}
+                {result.contractVerification.success ? "Success" : "Failed"}
               </p>
+              {result.contractVerification.txHash && (
+                <p className="text-blue-600 break-all text-sm mt-2">
+                  Transaction Hash: {result.contractVerification.txHash}
+                </p>
+              )}
             </div>
           )}
 

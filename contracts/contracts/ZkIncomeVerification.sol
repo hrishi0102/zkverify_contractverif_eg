@@ -48,8 +48,7 @@ contract ZkIncomeVerification  {
         uint256 leafCount,
         uint256 index
     ) internal view returns (bool) {
-        bytes memory encodedInput = abi.encodePacked(
-            _changeEndianess(uint256(uint160(inputAddress)))
+        bytes memory encodedInput = abi.encodePacked(_changeEndianess(uint256(1)),_changeEndianess(uint256(uint160(inputAddress)))
         );
         bytes32 leaf = keccak256(
             abi.encodePacked(PROVING_SYSTEM_ID, vkHash, keccak256(encodedInput))
